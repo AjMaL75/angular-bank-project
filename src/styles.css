@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+   
+}
+body{
+    background-image: url(./assets/ferran-fusalba-rosello-WgUHuGSWPVM-unsplash.jpg);
+    background-size: cover;
+    overflow-x: hidden;
+  
+    
+}
+header{
+    background-color: rgb(92, 245, 92);
+    height: 35px;
+   
+    
+
+}
+footer{
+    background-color:rgb(92, 245, 92); 
+    height: 40px;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    
+}

@@ -1,0 +1,32 @@
+<!-- <div class="row">
+    <div class="col-12"> <h3 class="text-white text-center">Login</h3>
+
+        <div class="container w-50 bg-secondary mt-5 rounded text-center pt-3">
+           
+            <input type="text" class="form-control mt-5" placeholder="Account NO " id="accno">
+            <input type="password" class="form-control mt-3" placeholder="Password" id="pass">
+            <button class="btn btn-info text-center mt-5 mb-2">Login</button>
+        </div>
+    </div >
+</div > -->
+    <div class="text-info mt-2 ps-5">
+        <h3>{{data}}</h3></div>
+    
+        
+            <div class="main-logo">
+                <div class="logo-desig">    <i class="banklog fa-solid fs-1 fa-building-columns position-absolut"></i>
+                </div>
+                <div class="logform text-center ">
+                    <h5>Banking Corperate</h5>
+                    <form action="" class="input-icons" >
+                        <i class="fa fa-user icon"></i>
+                        <input (change)="acnoChange($event)"type="text"name="name1" id="n1" [placeholder]="data1" class="mt-3 inp ps-5 log-id " required >
+                        <i class="fa-solid fa-lock"></i>
+                        <input (change)="pasChange($event)" type="password" name="pass1" id="p1" placeholder="Password" class="mt-3 inp ps-5 log-pass"required  >
+                        <input type="button" (click)="login()"value="LOGIN" class=" log-but mt-3" >
+                        <p class="para mt-3 text-decoration-none">Don't have an account? <a href="" id="lin">SIGNUP </a> here</p>
+                    </form>
+                </div >
+            </div >
+        
+
