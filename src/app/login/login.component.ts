@@ -22,11 +22,42 @@ export class LoginComponent {
       1004:{username:"sujith",accno:1004,password:"abc123",balance:0}
       
     }
-    login()
+    // login()
+    // {
+    //   if(this.accno in this.userDetails )
+    //   {
+    //     if(this.pass==this.userDetails[this.accno]['password'])
+    //     {
+    //       alert("You are successfullu logged")
+    //     }
+    //     else{
+    //       alert("please enter correct passwoerd")
+    //     }
+    //   }
+    //   else{
+    //     alert("incorrect accno")
+    //   }
+    // }
+    // acnoChange(event:any)
+    // {
+    //  this.accno= event.target.value
+    //  console.log(this.accno);
+     
+      
+    // }pasChange(event:any)
+    // {
+    //   this.pass= event.target.value;
+    //   console.log(this.pass);
+      
+       
+    // }
+    login(accno:any,pass:any)
     {
-      if(this.accno in this.userDetails )
+      var acnum=accno.value
+      var passw=pass.value
+      if(acnum in this.userDetails )
       {
-        if(this.pass==this.userDetails[this.accno]['password'])
+        if(passw==this.userDetails[acnum]['password'])
         {
           alert("You are successfullu logged")
         }
@@ -37,18 +68,5 @@ export class LoginComponent {
       else{
         alert("incorrect accno")
       }
-    }
-    acnoChange(event:any)
-    {
-     this.accno= event.target.value
-     console.log(this.accno);
-     
-      
-    }pasChange(event:any)
-    {
-      this.pass= event.target.value;
-      console.log(this.pass);
-      
-       
     }
 }
