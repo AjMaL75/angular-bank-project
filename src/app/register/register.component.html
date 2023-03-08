@@ -1,1 +1,14 @@
-<p>register works!</p>
+<div class=" main  container bg-secondary">
+    <h1 class="text-center text-white" >   Banking Register </h1>
+    <div class="  second-main container w-25 mt-5   rounded ">
+                <form action="">
+                    <label for="" class="mt-3">Account Number</label><br>
+                    <input [(ngModel)]="accne" type="text" class="form-control" placeholder="Enter Your Account Number" name="acc1" id="accnew">
+                    <label for="" class="mt-3">UserName</label><br>
+                    <input [(ngModel)]="uname3"name="us1" type="text" class="form-control" placeholder="Enter Your Name" id="usenew">
+                    <label for="" class="mt-3">Password</label><br>
+                    <input [(ngModel)]="passne"name="newpas" type="password" class="form-control" placeholder="Enter New password" id="passnew">
+                    <button (click)="register()" class="btn btn-warning mt-3">Register</button>
+                </form>
+    </div>
+</div >
