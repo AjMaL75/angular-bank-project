@@ -1,1 +1,25 @@
-<p class="text-info">dashboard works!</p>
+<h1 class="text-info ms-5">welcome {{user}}</h1>
+<div class="row ">
+    <div class="col-lg-6 col-md-6 col-sm-12   p-3 ">
+        <h2 class="text-primary ms-5">Deposit Form</h2>
+        <form action="" class="text-center p-4 w-50 bg-light ms-5 rounded">
+            <input [(ngModel)]="acno" type="text" class="form-control mt-3" placeholder="Enter account number" id="d1" name="dn1">
+            <input [(ngModel)]="pasw"type="password" class="form-control mt-3" placeholder="Enter password" id="d2" name="dn2">
+            <input [(ngModel)]="amnt"type="text" class="form-control mt-3" placeholder="Enter the amount" id="d3" name="dn3">
+            <button class="btn btn-success mt-3" (click)="deposit()">Deposit</button>
+        </form>
+
+    </div>
+    <div class="col-lg-6  p-3 col-md-6 col-sm-12  ">
+        <a href="" class="float-end text-danger">Transaction History</a>
+        <h2 class="text-primary ms-5">Withdrawl Form</h2>
+        
+        <form action="" class="text-center p-4 w-50 bg-light ms-5 rounded">
+            <input [(ngModel)]="acno1" type="text" class="form-control mt-3" placeholder="Enter account number" id="w1" name="wn1">
+            <input [(ngModel)]="pasw1"type="password" class="form-control mt-3" placeholder="Enter password" id="w2"name="wn2">
+            <input [(ngModel)]="amnt1" type="text" class="form-control mt-3" placeholder="Enter the amount" id="w3" name="wn3">
+            <button class="btn btn-success mt-3" (click)="withdrawl()">Withdrawl</button>
+        </form>
+
+    </div>
+</div>

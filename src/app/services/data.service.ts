@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
+  currentUser:any
+
   constructor() { }
   userDetails:any={
     1000:{username:"anu",accno:1000,password:"abc123",balance:0},
@@ -35,6 +37,7 @@ export class DataService {
       {
         if(pass==this.userDetails[accno]['password'])
         {
+          this.currentUser=this.userDetails[accno]["username"]
           return true
         }
         else{
@@ -46,4 +49,52 @@ export class DataService {
 
       
   }
-}
+  deposit(accno:any,passw:any,amont:any)
+  
+  {
+    var amnt=parseInt(amont)
+    if(accno in this.userDetails)
+    {
+          if(passw==this.userDetails[accno]['password'])
+          {
+            this.userDetails[accno]['balance']+=amnt
+            return this.userDetails[accno]['balance']
+          }
+          else{
+            return false
+          }
+    }
+    else
+    {
+      return false
+    }
+  }
+  withdrawl(accno:any,pass:any,amont:any)
+  {
+    var amnt=parseInt(amont)
+    
+        if(accno in this.userDetails)
+        {
+            if(pass==this.userDetails[accno]['password'])
+            {
+              if(amnt<=this.userDetails[accno]['balance']){
+              this.userDetails[accno]['balance']-=amnt
+              return this.userDetails[accno]['balance']
+              }
+              else
+              {
+                 alert('insufficient balance')
+              }
+            }
+            else
+            {
+              return false
+            }
+        }
+        else{
+          return false
+        }
+    }
+   
+  }
+
