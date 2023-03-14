@@ -6,14 +6,15 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   currentUser:any
+  currentAccountno:any
 
   constructor() { }
   userDetails:any={
-    1000:{username:"anu",accno:1000,password:"abc123",balance:0},
-    1001:{username:"arif",accno:1001,password:"abc123",balance:0},
-    1002:{username:"anoop",accno:1002,password:"abc123",balance:0},
-    1003:{username:"sanu",accno:1003,password:"abc123",balance:0},
-    1004:{username:"sujith",accno:1004,password:"abc123",balance:0}
+    1000:{username:"anu",accno:1000,password:"abc123",balance:0,transaction:[]},
+    1001:{username:"arif",accno:1001,password:"abc123",balance:0,transaction:[]},
+    1002:{username:"anoop",accno:1002,password:"abc123",balance:0,transaction:[],},
+    1003:{username:"sanu",accno:1003,password:"abc123",balance:0,transaction:[]},
+    1004:{username:"sujith",accno:1004,password:"abc123",balance:0,transaction:[]}
     
   }
   register(accno:any,uname:any,pass:any)
@@ -24,7 +25,7 @@ export class DataService {
       }
       else
       {
-        this.userDetails[accno]={username:uname,accno,password:pass,balance:0}
+        this.userDetails[accno]={username:uname,accno,password:pass,balance:0,transaction:[]}
         console.log(this.userDetails);
         return true
         
@@ -38,6 +39,8 @@ export class DataService {
         if(pass==this.userDetails[accno]['password'])
         {
           this.currentUser=this.userDetails[accno]["username"]
+          this.currentAccountno=accno
+
           return true
         }
         else{
@@ -58,6 +61,13 @@ export class DataService {
           if(passw==this.userDetails[accno]['password'])
           {
             this.userDetails[accno]['balance']+=amnt
+            //add transaction deposit data
+            this.userDetails[accno]['transaction'].push({
+              type:"Credit",
+              amount:amnt
+            })
+
+
             return this.userDetails[accno]['balance']
           }
           else{
@@ -79,6 +89,15 @@ export class DataService {
             {
               if(amnt<=this.userDetails[accno]['balance']){
               this.userDetails[accno]['balance']-=amnt
+              //add transaction withdraw data
+            this.userDetails[accno]['transaction'].push({
+              type:"Debit",
+              amount:amnt
+            })
+            // console.log(this.userDetails);
+            
+
+
               return this.userDetails[accno]['balance']
               }
               else
@@ -94,6 +113,15 @@ export class DataService {
         else{
           return false
         }
+    }
+    getTransaction(accno:any)
+    {
+      
+      
+      
+      return this.userDetails[accno].transaction
+      
+      
     }
    
   }

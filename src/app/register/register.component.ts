@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -7,9 +8,17 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-         constructor(private ds:DataService){
+         constructor(private ds:DataService,private fb:FormBuilder){
 
   }
+  //model for register form
+  registerForm=this.fb.group(
+    {
+      accno:[''],
+      pass:[''],
+      usernme:['']
+    }
+  )
 
   accne:any
   uname3:any
