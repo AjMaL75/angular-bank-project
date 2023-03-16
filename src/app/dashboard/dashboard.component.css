@@ -1,6 +1,7 @@
 .transac{
-    background-color: rgba(0, green, blue, alpha);
-    display: inline;
+    background-color: rgba(131, 228, 90, 0.8);
     border-radius: 20px;
     padding: 20px;
+    display: inline;
+    margin-left: 45%;
 }
