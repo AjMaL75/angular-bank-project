@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -8,41 +9,60 @@ import { DataService } from '../services/data.service';
 })
 export class DashboardComponent {
   user:any
-  constructor(private dash:DataService)
+  constructor(private dash:DataService,private fb:FormBuilder)
   {
       this.user=dash.currentUser
   }
-  acno:any
-  pasw:any
-  amnt:any
-  acno1:any
-  pasw1:any
-  amnt1:any
+  
+  depositForm=this.fb.group({
+    acno:['',[Validators.required,Validators.pattern('[0-9]+')]],
+    pasw:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]+')]],
+    amnt:['',[Validators.required,Validators.pattern('[0-9]+')]]
+  })
+  withdrawlForm=this.fb.group({
+    acno1:['',[Validators.required,Validators.pattern('[0-9]+')]],
+    pasw1:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]+')]],
+    amnt1:['',[Validators.required,Validators.pattern('[0-9]+')]]
+  })
   deposit()
   {
-      const result=this.dash.deposit(this.acno,this.pasw,this.amnt)
+      if(this.depositForm.valid)
+      {
+        const result=this.dash.deposit(this.depositForm.value.acno,this.depositForm.value.pasw,this.depositForm.value.amnt)
       if(result)
       {
-        alert(`your acc has been credited amount with ${this.amnt} and your available balance has ${result}`)
+        alert(`your acc has been credited amount with ${this.depositForm.value.amnt} and your available balance has ${result}`)
       }
       else
       {
         alert("incorrect accno or password")
+      }
+      }
+      else
+      {
+        alert("invalid form")
       }
 
 
 }
 withdrawl()
 {
-  const result=this.dash.withdrawl(this.acno1,this.pasw1,this.amnt1)
-      if(result)
-      {
-        alert(`your acc has been debited amount with ${this.amnt1} and your available balance has ${result}`)
-      }
-      else
-      {
-        alert("incorrect accno or password")
-      }
+ if(this.withdrawlForm.valid)
+ {
+  const result=this.dash.withdrawl(this.withdrawlForm.value.acno1,this.withdrawlForm.value.pasw1,this.withdrawlForm.value.amnt1)
+  if(result)
+  {
+    alert(`your acc has been debited amount with ${this.withdrawlForm.value.amnt1} and your available balance has ${result}`)
+  }
+  else
+  {
+    alert("incorrect accno or password")
+  }
+ }
+ else
+ {
+  alert("invalid form")
+ }
 
 }
 

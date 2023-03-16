@@ -13,20 +13,22 @@
         <h3>{{data}}</h3></div>
     
         
-            <div class="main-logo">
-                <div class="logo-desig">    <i class="banklog fa-solid fs-1 fa-building-columns position-absolut"></i>
-                </div>
-                <div class="logform text-center ">
-                    <h5>Banking Corperate</h5>
-                    <form action="" class="input-icons" >
-                        <i class="fa fa-user icon"></i>
-                        <input [(ngModel)]="accno"  type="text" name="name1" id="n1" [placeholder]="data1" class="mt-3 inp ps-5 log-id "  required >
-                        <i class="fa-solid fa-lock"></i>
-                        <input [(ngModel)]="pass" type="password" name="pass1" id="p1" placeholder="Password" class="mt-3 inp ps-5 log-pass" required  >
-                        <input type="button" (click)="login()"value="LOGIN" class=" log-but mt-3" >
-                        <p class="para mt-3 text-decoration-none">Don't have an account? <a href="register"  id="lin">SIGNUP </a> here</p>
-                    </form>
+           <section class="loginpage container " >
+                <div class="row    ">
+                    <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12  ">
+                        
+                       
+                        <form action="" class="input-icons w-75 bg-light p-5 rounded me-auto  text-center mt-3 ms-5" [formGroup]="loginForm" >
+                            <h5>Banking Corperate</h5>
+                            <input formControlName="accno" type="text" name="name1" id="n1" [placeholder]="data1" class="mt-5 inp ps-2 log-id  form-control"  required >
+                            <div class="bg-danger d-inline text-white text-start" *ngIf="this.loginForm.get('accno')?.errors &&this.loginForm.get('accno')?.touched">please enter number only</div>
+                            <input formControlName="pass" type="password" name="pass1" id="p1" placeholder="Password" class="mt-3  ps-2 log-pass form-control" required  >
+                            <div class="bg-danger d-inline text-white text-start" *ngIf="this.loginForm.get('pass')?.errors &&this.loginForm.get('pass')?.touched">numbers and characters only allowed</div><br>
+                            <button (click)="login()" class=" btn btn-info mt-3" >Login</button>
+                            <p class="para mt-3 text-decoration-none " style="font-size: 0.9em;">Don't have an account? <a href="register"  id="lin">SIGNUP </a> here</p>
+                        </form>
+                    </div >
                 </div >
-            </div >
+           </section >
         
 

@@ -1,14 +1,22 @@
 <div class=" main  container bg-secondary">
-    <h1 class="text-center text-white" >   Banking Register </h1>
+    <h1 class="text-center text-white"> Banking Register </h1>
     <div class="  second-main container w-25 mt-5   rounded ">
-                <form action="">
-                    <label for="" class="mt-3">Account Number</label><br>
-                    <input [(ngModel)]="accne" type="text" class="form-control" placeholder="Enter Your Account Number" name="acc1" id="accnew">
-                    <label for="" class="mt-3">UserName</label><br>
-                    <input [(ngModel)]="uname3"name="us1" type="text" class="form-control" placeholder="Enter Your Name" id="usenew">
-                    <label for="" class="mt-3">Password</label><br>
-                    <input [(ngModel)]="passne"name="newpas" type="password" class="form-control" placeholder="Enter New password" id="passnew">
-                    <button (click)="register()" class="btn btn-warning mt-3">Register</button>
-                </form>
+        <form action="" [formGroup]="registerForm">
+            <label for="" class="mt-3">Account Number</label><br>
+            <input formControlName="accno" type="text" class="form-control" placeholder="Enter Your Account Number"
+                name="acc1" id="accnew">
+                <div class="d-inline h-25  bg-danger text-white rounded " *ngIf="this.registerForm.get('accno')?.errors &&this.registerForm.get('accno')?.touched">only numbers </div>
+            <label for="" class="mt-3">UserName</label><br>
+            <input formControlName="username" name="us1" type="text" class="form-control" placeholder="Enter Your Name"
+                id="usenew"><br>
+                <div class="d-inline h-25  bg-danger text-white rounded " *ngIf="this.registerForm.get('username')?.errors &&this.registerForm.get('username')?.touched">only chracters are allowed </div>
+
+            <label for="" class="mt-3">Password</label><br>
+            <input formControlName="pass" name="newpas" type="password" class="form-control"
+                placeholder="Enter New password" id="passnew">
+                <div class="d-inline-block h-25  bg-danger text-white rounded " *ngIf="this.registerForm.get('pass')?.errors &&this.registerForm.get('pass')?.touched"> </div>
+
+            <button (click)="register()" class="btn btn-warning mt-3">Register</button>
+        </form>
     </div>
-</div >
+</div>

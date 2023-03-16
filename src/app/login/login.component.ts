@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -13,18 +14,23 @@ export class LoginComponent {
 
   // acno=""
   // or
-  accno:any
-  pass:any
+  
 
     
-    constructor(private router:Router,private ds:DataService)
+    constructor(private router:Router,private ds:DataService,private fb:FormBuilder)
     {
 
     }
+    loginForm=this.fb.group({
+      accno:['',[Validators.required,Validators.pattern('[0-9]+')]],
+      pass:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]+')]]
+    })
     login()
     {
-      const result=this.ds.login(this.accno,this.pass)
-      if(this.accno>=0){
+      if(this.loginForm.valid)
+      {
+        const result=this.ds.login(this.loginForm.value.accno,this.loginForm.value.pass)
+      
       if(result)
       {
         alert("You are successfully logged")
@@ -32,12 +38,13 @@ export class LoginComponent {
       }
 
       else{
-        alert("incorrect password")
+        alert("incorrect password or accno")
       }
       }
       else{
-        alert("Don't be account field as empty")
+        alert('invalid form')
       }
+      
   
       
     }
