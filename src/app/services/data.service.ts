@@ -7,16 +7,19 @@ export class DataService {
 
   currentUser:any
   currentAccountno:any
+  userDetails:any
 
-  constructor() { }
-  userDetails:any={
-    1000:{username:"anu",accno:1000,password:"abc123",balance:0,transaction:[]},
-    1001:{username:"arif",accno:1001,password:"abc123",balance:0,transaction:[]},
-    1002:{username:"anoop",accno:1002,password:"abc123",balance:0,transaction:[],},
-    1003:{username:"sanu",accno:1003,password:"abc123",balance:0,transaction:[]},
-    1004:{username:"sujith",accno:1004,password:"abc123",balance:0,transaction:[]}
+  constructor() {
+    this.getDetails()
+   }
+  // userDetails:any={
+  //   1000:{username:"anu",accno:1000,password:"abc123",balance:0,transaction:[]},
+  //   1001:{username:"arif",accno:1001,password:"abc123",balance:0,transaction:[]},
+  //   1002:{username:"anoop",accno:1002,password:"abc123",balance:0,transaction:[],},
+  //   1003:{username:"sanu",accno:1003,password:"abc123",balance:0,transaction:[]},
+  //   1004:{username:"sujith",accno:1004,password:"abc123",balance:0,transaction:[]}
     
-  }
+  // }
   saveDetails()
   {
     if(this.userDetails)
@@ -31,6 +34,22 @@ export class DataService {
     {
       localStorage.setItem('currentAcno',this.currentAccountno)
     }
+  }
+  getDetails()
+  {
+    if(localStorage.getItem('userDetails'))
+    {
+      this.userDetails=JSON.parse(localStorage.getItem('userDetails') ||" ")
+    }
+    if(localStorage.getItem('this.currentUser'))
+    {
+      this.currentUser=localStorage.getItem('currentUser')
+    }
+    if(localStorage.getItem('currentAcno'))
+    {
+      this.currentAccountno=JSON.parse(localStorage.getItem('currentAcno')|| " ")
+    }
+
   }
   register(accno:any,uname:any,pass:any)
   {
@@ -142,4 +161,7 @@ export class DataService {
     }
    
   }
+ 
+
+
 

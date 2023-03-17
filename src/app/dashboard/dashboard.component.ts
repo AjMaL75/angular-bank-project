@@ -1,17 +1,26 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
   user:any
-  constructor(private dash:DataService,private fb:FormBuilder)
+  constructor(private dash:DataService,private fb:FormBuilder,private router:Router)
   {
       this.user=dash.currentUser
+  }
+  ngOnInit():void{
+    if(!localStorage.getItem('currentAcno'))
+    {
+      alert("please login")
+      this.router.navigateByUrl("")
+    }
   }
   
   depositForm=this.fb.group({
@@ -64,6 +73,12 @@ withdrawl()
   alert("invalid form")
  }
 
+}
+removeUser()
+{
+  localStorage.removeItem('currentUser')
+  localStorage.removeItem('currentAcno')
+  this.router.navigateByUrl("")
 }
 
 }
