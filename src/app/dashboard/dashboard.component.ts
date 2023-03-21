@@ -88,5 +88,9 @@ deleteAcc()
 {
   this.useracc=JSON.parse(localStorage.getItem('currentAcno') ||"")
 }
+removeAccno()
+{
+  this.useracc=""
+}
 
 }

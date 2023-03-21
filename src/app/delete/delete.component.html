@@ -1,5 +1,5 @@
 <div class="float-end bg-info rounded p-3 text-center" *ngIf="item">
     <p class="text-white">Do you want to delete this account {{item}}</p>
     <button class="btn btn-success text-white">Yes</button>
-    <button class="ms-4 btn btn-danger text-white">No</button>
+    <button class="ms-4 btn btn-danger text-white" (click)="cancel()">No</button>
 </div>

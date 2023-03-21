@@ -4,7 +4,7 @@
 </div>
 <div><h5 class="text-white">{{date | date:"short"}}</h5 ></div>
 <button class="text-white btn btn-danger" (click)="deleteAcc()">Delete</button>
-<app-delete [item]="useracc"></app-delete>
+<app-delete [item]="useracc" (onRemove)="removeAccno()"></app-delete>
 <div [ngClass]="useracc?'s1':''"class="row ">
     <div class="col-lg-6 col-md-6 col-sm-12   p-3 ">
         <h2 class="text-primary ms-5">Deposit Form</h2>
