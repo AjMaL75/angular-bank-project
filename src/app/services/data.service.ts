@@ -7,7 +7,7 @@ export class DataService {
 
   currentUser:any
   currentAccountno:any
-  userDetails:any
+  userDetails:any={}
 
   constructor() {
     this.getDetails()

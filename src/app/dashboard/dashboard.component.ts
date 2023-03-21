@@ -11,9 +11,13 @@ import { DataService } from '../services/data.service';
 })
 export class DashboardComponent implements OnInit{
   user:any
+  useracc:any
+  date:any
+
   constructor(private dash:DataService,private fb:FormBuilder,private router:Router)
   {
       this.user=dash.currentUser
+      this.date=new Date()
   }
   ngOnInit():void{
     if(!localStorage.getItem('currentAcno'))
@@ -79,6 +83,10 @@ removeUser()
   localStorage.removeItem('currentUser')
   localStorage.removeItem('currentAcno')
   this.router.navigateByUrl("")
+}
+deleteAcc()
+{
+  this.useracc=JSON.parse(localStorage.getItem('currentAcno') ||"")
 }
 
 }

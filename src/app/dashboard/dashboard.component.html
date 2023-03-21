@@ -1,7 +1,11 @@
 <h1 class="text-info ms-5">welcome {{user}}</h1>
 <div class="transac "><a routerLink="/transaction" class=" text-danger" style="text-decoration: none;">Transaction History</a>
+    
 </div>
-<div class="row ">
+<div><h5 class="text-white">{{date | date:"short"}}</h5 ></div>
+<button class="text-white btn btn-danger" (click)="deleteAcc()">Delete</button>
+<app-delete [item]="useracc"></app-delete>
+<div [ngClass]="useracc?'s1':''"class="row ">
     <div class="col-lg-6 col-md-6 col-sm-12   p-3 ">
         <h2 class="text-primary ms-5">Deposit Form</h2>
         <form action="" class="text-center p-4 w-50 bg-light ms-5 rounded" [formGroup]="depositForm">
