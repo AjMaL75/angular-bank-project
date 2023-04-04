@@ -29,16 +29,14 @@ export class RegisterComponent {
     var pass1=this.registerForm.value.pass
    if(this.registerForm.valid)
    {
-    const result=this.ds.register(acc1,uname1,pass1)
-    if(result)
-    {
-      alert("registered")
+    this.ds.register(acc1,uname1,pass1).subscribe((result:any)=>{
+      alert(result.message)
       this.router.navigateByUrl("")
-    }
-    else
-    {
-      alert("already registed")
-    }
+    },
+    result=>
+    {alert(result.error.message)
+      }
+    )
    }
    else
    {

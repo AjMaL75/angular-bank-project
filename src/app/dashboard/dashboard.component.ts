@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit{
       this.date=new Date()
   }
   ngOnInit():void{
-    if(!localStorage.getItem('currentAcno'))
+    if(!localStorage.getItem('currentAccountno'))
     {
       alert("please login")
       this.router.navigateByUrl("")
@@ -41,15 +41,15 @@ export class DashboardComponent implements OnInit{
   {
       if(this.depositForm.valid)
       {
-        const result=this.dash.deposit(this.depositForm.value.acno,this.depositForm.value.pasw,this.depositForm.value.amnt)
-      if(result)
-      {
-        alert(`your acc has been credited amount with ${this.depositForm.value.amnt} and your available balance has ${result}`)
-      }
-      else
-      {
-        alert("incorrect accno or password")
-      }
+        this.dash.deposit(this.depositForm.value.acno,this.depositForm.value.pasw,this.depositForm.value.amnt).subscribe((result:any)=>{
+
+          alert(result.message)
+        },
+        result=>{
+          alert(result.error.message)
+          this.router.navigateByUrl("dashboard")
+        })
+      
       }
       else
       {
@@ -62,15 +62,12 @@ withdrawl()
 {
  if(this.withdrawlForm.valid)
  {
-  const result=this.dash.withdrawl(this.withdrawlForm.value.acno1,this.withdrawlForm.value.pasw1,this.withdrawlForm.value.amnt1)
-  if(result)
-  {
-    alert(`your acc has been debited amount with ${this.withdrawlForm.value.amnt1} and your available balance has ${result}`)
-  }
-  else
-  {
-    alert("incorrect accno or password")
-  }
+  this.dash.withdrawl(this.withdrawlForm.value.acno1,this.withdrawlForm.value.pasw1,this.withdrawlForm.value.amnt1).subscribe((result:any)=>{
+    alert(result.message)
+  },
+  result=>{
+    alert(result.error.message)
+  })
  }
  else
  {
@@ -81,16 +78,29 @@ withdrawl()
 removeUser()
 {
   localStorage.removeItem('currentUser')
-  localStorage.removeItem('currentAcno')
+  localStorage.removeItem('currentAccountno')
   this.router.navigateByUrl("")
 }
 deleteAcc()
 {
-  this.useracc=JSON.parse(localStorage.getItem('currentAcno') ||"")
+  this.useracc=JSON.parse(localStorage.getItem('currentAccountno') ||"")
 }
 removeAccno()
 {
   this.useracc=""
 }
-
+deleteAllAcc(event:any)
+{
+    this.dash.deleteAcc(event).subscribe((result:any)=>{
+    
+        alert(result.message)
+        this.removeUser()
+        this.router.navigateByUrl("")
+      },
+    result=>
+      {
+        alert(result.message)
+      }
+    )
+}
 }

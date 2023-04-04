@@ -12,9 +12,14 @@ export class DeleteComponent {
 
   // event creation
   @Output() onRemove=new EventEmitter()
+  @Output() onDelete=new EventEmitter()
   cancel()
   {
         this.onRemove.emit()
+  }
+  delete()
+  {
+      this.onDelete.emit(this.item)
   }
   
 }

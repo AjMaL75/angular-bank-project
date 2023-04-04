@@ -29,25 +29,28 @@ export class LoginComponent {
     {
       if(this.loginForm.valid)
       {
-        const result=this.ds.login(this.loginForm.value.accno,this.loginForm.value.pass)
-      
-      if(result)
-      {
-        alert("You are successfully logged")
-        this.router.navigateByUrl("dashboard")
-      }
-
-      else{
-        alert("incorrect password or accno")
-      }
-      }
-      else{
-        alert('invalid form')
-      }
-      
-  
+        this.ds.login(this.loginForm.value.accno,this.loginForm.value.pass).subscribe((result:any)=>{
+          console.log(result);
+          localStorage.setItem("currentUser",result.currentUser)
+          localStorage.setItem("currentAccountno",JSON.stringify(result.currentAccountno))
+          localStorage.setItem("token",JSON.stringify(result.token))
+          alert(result.message)
+          this.router.navigateByUrl("dashboard")
+          
+          
+        },
+        result=>{
+          console.log(result.error);
+          alert(result.error.message)
+        }
+        )
       
     }
+    else
+    {
+      alert("invalid form")
+    }
+  }
     // acnoChange(event:any)
     // {
     //  this.accno= event.target.value

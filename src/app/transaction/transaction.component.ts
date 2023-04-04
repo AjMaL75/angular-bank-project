@@ -12,8 +12,14 @@ export class TransactionComponent  {
   {
     
     
-    this.transactionData=this.ds.getTransaction(this.ds.currentAccountno)
-    console.log(this.transactionData);
+    this.ds.getTransaction(JSON.parse(localStorage.getItem('currentAccountno')||"")).subscribe((result:any)=>{
+      this.transactionData=result.transactions
+    }
+    // result=>{
+    //   alert(result.error.message)
+    // }
+    )
+    
     
   }
   
